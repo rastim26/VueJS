@@ -1,0 +1,2 @@
+const ourPlanet;
+let siteVisitor
