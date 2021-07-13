@@ -12,7 +12,7 @@ export default {
   components: { TheNavbar },
   data () {
     return {
-      isAuth: false
+      isAuth: true // временно
     }
   },
   methods: {

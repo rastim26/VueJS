@@ -13,15 +13,10 @@
 export default {
   inject: ['emails'],
   props: ['mailId'],
-  data () {
-    return {
-      mId: this.mailId
-    }
-  },
   computed: {
     email () {
-      console.log(this.mId)
-      return this.emails.find(e => e.id === this.mId)
+      console.log(this.emails.find(e => e.id === this.mailId))
+      return this.emails.find(e => e.id === this.mailId)
     }
   }
 }

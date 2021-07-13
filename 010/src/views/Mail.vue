@@ -10,19 +10,15 @@
       </ul>
     </div>
     <div class="card-body">
-      <app-email-body
-        :mail-id="$route.params.mailId"
-      ></app-email-body>
+      <router-view></router-view>
     </div>
   </div>
 </template>
 
 <script>
-import AppEmailBody from '../components/AppEmailBody'
 
 export default {
-  inject: ['emails'],
-  components: { AppEmailBody }
+  inject: ['emails']
 }
 </script>
 
