@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations,mapActions } from 'vuex'
 import TheNavbar from './TheNavbar'
 export default {
   components: {TheNavbar},
