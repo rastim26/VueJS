@@ -1,10 +1,11 @@
-import { createStore } from 'vuex'
+import { createStore, createLogger } from 'vuex'
 import { counterModule } from './modules/counter'
 import mutations from './modules/mutations'
 import actions from './modules/actions'
 
 
 export default createStore({
+    plugins: [createLogger()],
     modules: {
         count: counterModule
     },
