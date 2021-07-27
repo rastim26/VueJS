@@ -7,7 +7,12 @@
       <p>Название: <strong>{{ name }}</strong></p>
       <p>Версия: <strong>{{ version }} ({{ doubleVersion }})</strong></p>
 
+      <div class="form-control">
+        <input type="text" ref="textInput">
+      </div>
+
       <button class="btn" @click="change">Изменить</button>
+
     </div>
   </div>
 </template>
@@ -27,7 +32,7 @@ export default {
   setup() {
     const name = ref('VueJS')
     const version = ref('3')
-
+    const textInput = ref(null)
     // const framework = reactive({
     //   name: 'VueJS',
     //   version: '3'
@@ -50,13 +55,15 @@ export default {
 
       // framework.name = 'Vue JS !'
       // framework.version = 4
+      console.log(textInput.value.value)
     }
 
     return {
       name: name,
       version: version,
       doubleVersion,
-      change: changeInfo
+      change: changeInfo,
+      textInput
     }
   }
   // data() {
