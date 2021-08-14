@@ -3,12 +3,19 @@
     <div class="card">
       <h1>Vue Composition Api</h1>
       <small>data, methods, computed, watch</small>
-      <hr>
-      <p>Название: <strong>{{ name }}</strong></p>
-      <p>Версия: <strong>{{ version }} ({{ doubleVersion }})</strong></p>
+      <framework-info
+        :name="name"
+        :version="version"
+        @change-version="changeVersion"
+        class="test-from-app"
+      >
+        <template #footer>
+          <p>This is footer</p>
+        </template>
+      </framework-info>
 
       <div class="form-control">
-        <input type="text" ref="textInput">
+        <input type="text" v-model="firstName">
       </div>
 
       <button class="btn" @click="change">Изменить</button>
@@ -20,33 +27,51 @@
 <script>
 import {
   ref,
-  // reactive,
-  // toRefs,
-  // isRef,
-  // isReactive,
-  computed,
-  watch
+  watch,
+  provide,
+  onBeforeMount,
+  onMounted,
+  onBeforeUpdate,
+  onUpdated,
+  onBeforeUnmount,
+  onUnmounted
+
 } from 'vue'
+import FrameworkInfo from "./FrameworkInfo";
 
 export default {
+  components: {FrameworkInfo},
   setup() {
     const name = ref('VueJS')
     const version = ref('3')
-    const textInput = ref(null)
+    // const textInput = ref(null)
+    const firstName = ref('')
     // const framework = reactive({
     //   name: 'VueJS',
     //   version: '3'
     // })
 
-    const doubleVersion = computed(()=> {
-      return version.value * 2
-    })
+    onBeforeMount(
+        console.log('onBeforeMount')
+    )
+    onMounted(
+        console.log('onMounted')
+    )
+    onBeforeUpdate(
+        console.log('onBeforeUpdate')
+    )
+    onUpdated(
+        console.log('onUpdated')
+    )
+    onBeforeUnmount(
+        console.log('onBeforeUnmount')
+    )
+    onUnmounted(
+        console.log('onUnmounted')
+    )
 
-    watch([doubleVersion, name], (newValues, oldValues) => {
-      console.log('new version', newValues[0])
-      console.log('new name', newValues[1])
-      console.log('old version', oldValues[0])
-      console.log('old name', oldValues[1])
+    watch(firstName,(newV) => {
+      console.log(newV)
     })
 
     function changeInfo() {
@@ -55,28 +80,19 @@ export default {
 
       // framework.name = 'Vue JS !'
       // framework.version = 4
-      console.log(textInput.value.value)
+
     }
 
+    function changeVersion(num) {
+      version.value = num
+    }
+    provide('name', name)
+    provide('version', version)
     return {
-      name: name,
-      version: version,
-      doubleVersion,
       change: changeInfo,
-      textInput
+      firstName,
+      changeVersion: changeVersion
     }
   }
-  // data() {
-  //   return {
-  //     name: 'VueJS',
-  //     version: 3
-  //   }
-  // },
-  // methods: {
-  //   changeInfo() {
-  //     this.name = 'Vue JS!'
-  //     this.version = 4
-  //   }
-  // }
 }
 </script>
