@@ -66,9 +66,7 @@ export default {
     onBeforeUnmount(
         console.log('onBeforeUnmount')
     )
-    onUnmounted(
-        console.log('onUnmounted')
-    )
+
 
     watch(firstName,(newV) => {
       console.log(newV)
