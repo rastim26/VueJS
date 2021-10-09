@@ -11,12 +11,12 @@
       >
         <template #footer>
           <p>This is footer</p>
-        </template>
+        </template> //qwerttty
       </framework-info>
 
       <div class="form-control">
         <input type="text" v-model="firstName">
-      </div>
+      </div> //
 
       <button class="btn" @click="change">Изменить</button>
 
